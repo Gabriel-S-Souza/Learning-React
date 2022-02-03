@@ -26,14 +26,12 @@
 
 		<script type="text/babel">
 			const Title = () => {
-				// Coloca-se variáveis dentro do JSX entre chaves, assim
 				return <h1>Eventos com React</h1>;
 			};
 
-			const Button = () => <button>Acionar</button>;
+			const Button = () => <button onClick={handleClick}>Acionar</button>;
 
 			const App = () => (
-				//Adicionando outros componentes dentro do componente App
 				<div>
 					<Title />
 					Evento
