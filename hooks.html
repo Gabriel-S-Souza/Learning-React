@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script
+			src="https://unpkg.com/react@17/umd/react.development.js"
+			crossorigin
+		></script>
+		<script
+			src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+			crossorigin
+		></script>
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+		<title>Hooks</title>
+		<style>
+			#card {
+				overflow: hidden;
+				width: 16em;
+				height: 20em;
+				border-radius: 8px;
+				box-shadow: 0 0 0 1px rgb(8, 8, 8, 0.5);
+				text-align: center;
+				margin-bottom: 16px;
+			}
+
+			#wrapper-arrow-buttons {
+				display: inline-flex;
+				flex-direction: column;
+			}
+			#wrapper-arrow-buttons button {
+				background: transparent;
+				border: none;
+				font-size: 12px;
+				transform: translateY(-8px);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app"></div>
+
+		<script type="text/babel">
+			const Compras = () => {
+				// Passa-se no useState o valor inicial para aquele elemento/variável
+				const [count, setCount] = React.useState(0);
+				function addToCart() {
+					setCount(count + 1);
+				}
+
+				function removeToCart() {
+					setCount(count - 1);
+				}
+
+				function comprar() {
+					if (count > 0) {
+						const text = `Pix de R$ ${(count * 250).toFixed(
+							2
+						)} realizado com sucesso!`;
+						const textConfirm =
+							document.querySelector("#text-confirm");
+						textConfirm.textContent = text;
+					}
+				}
+
+				return (
+					<div>
+						<div id="card">
+							<img src="./doguinho.jfif" alt="" />
+							<p>Doguinho fofo</p>
+							<p>R$ 250,00</p>
+						</div>
+						<span id="wrapper-arrow-buttons">
+							<button onClick={addToCart}>&#9650;</button>
+							<button onClick={removeToCart}> &#9660;</button>
+						</span>
+						<p style={{ display: "inline" }}>Quantidade: {count}</p>
+						<p>Preço: R$ {(count * 250).toFixed(2)}</p>
+						<button onClick={comprar}>Comprar</button>
+						<p id="text-confirm" style={{ color: "red" }}></p>
+					</div>
+				);
+			};
+
+			const Title = () => {
+				return <h1>React - Uso de hooks - useState()</h1>;
+			};
+
+			const App = () => (
+				<div>
+					<Title />
+					<h3>Loja React</h3>
+					<Compras />
+				</div>
+			);
+
+			ReactDOM.render(<App />, document.querySelector("#app"));
+		</script>
+	</body>
+</html>
